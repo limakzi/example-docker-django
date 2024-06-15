@@ -2,6 +2,8 @@
 name: docker -- build-image
 
 on:
+  push:
+    branches: ['main']
   pull_request:
     branches: ['main']
 
@@ -39,3 +41,4 @@ jobs:
           context: .
           file: .docker/${{ matrix.image }}/Dockerfile
           tags: ${{ github.repository }}:${{ matrix.image }}-${{ github.sha }}
+          push: true
