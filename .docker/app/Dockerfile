@@ -17,4 +17,5 @@ FROM builder AS development
 CMD ["manage.py", "runserver", "0.0.0.0:8000"]
 
 FROM builder AS production
+COPY src/ /app
 CMD ["gunicorn", "--bind", ":8000", "--workers", "3", "site.wsgi:application"]
