@@ -1,0 +1,22 @@
+---
+name: python -- flake8-lint
+
+on:
+  pull_request:
+    branches: ['main']
+
+jobs:
+  flake8-lint:
+    runs-on: ubuntu-latest
+    name: python-lint
+    steps:
+      - name: git -- checkout
+        uses: actions/checkout@v3
+      - name: python -- setup
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.11"
+      - name: python -- flake8-lint
+        uses: py-actions/flake8@v2
+        with:
+          ignore: 'E501'
