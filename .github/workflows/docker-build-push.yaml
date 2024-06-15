@@ -38,4 +38,4 @@ jobs:
         with:
           context: .
           file: .docker/${{ matrix.image }}/Dockerfile
-          tags: ${{ github.repository }}@${{ matrix.image }}
+          tags: ${{ github.repository }}:${{ matrix.image }}-${{ github.sha }}
