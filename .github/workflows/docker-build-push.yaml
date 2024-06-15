@@ -8,6 +8,10 @@ on:
 jobs:
   docker-build:
     runs-on: ubuntu-latest
+    permissions:
+      packages: write
+      attestations: write
+      contents: read
     strategy:
       matrix:
         image: [app, nginx, postgres, redis]
@@ -34,3 +38,4 @@ jobs:
         with:
           context: .
           file: .docker/${{ matrix.image }}/Dockerfile
+          tags: ${{ github.repository }}@${{ matrix.image }}
