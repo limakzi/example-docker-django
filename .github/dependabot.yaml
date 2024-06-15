@@ -1,0 +1,20 @@
+---
+
+version: 2
+updates:
+  - package-ecosystem: "docker"
+    directory: "/.docker/app/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/.docker/postgres/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "docker"
+    directory: "/.docker/nginx/"
+    schedule:
+      interval: "daily"
+  - package-ecosystem: "pip"
+    directory: "/"
+    schedule:
+      interval: "daily"

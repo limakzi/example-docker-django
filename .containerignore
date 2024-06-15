@@ -1,0 +1,8 @@
+./.env
+./.env.template
+
+./.docker/**
+./.github/**
+./.venv/**
+
+./compose.yaml
