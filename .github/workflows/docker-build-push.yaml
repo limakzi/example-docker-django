@@ -2,8 +2,15 @@
 name: docker -- build-image
 
 on:
+  push:
+    branches: ['main']
   pull_request:
     branches: ['main']
+
+permissions:
+  packages: write
+  attestations: write
+  contents: read
 
 jobs:
   docker-build:
@@ -16,6 +23,13 @@ jobs:
       - name: git -- checkout
         uses: actions/checkout@v3
 
+      - name: docker -- login
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: docker -- setup-qemu
         uses: docker/setup-qemu-action@v3
 
@@ -27,3 +41,5 @@ jobs:
         with:
           context: .
           file: .docker/${{ matrix.image }}/Dockerfile
+          tags: ghcr.io/${{ github.repository }}:${{ matrix.image }}-${{ github.sha }}
+          push: true
