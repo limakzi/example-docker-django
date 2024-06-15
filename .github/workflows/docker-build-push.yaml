@@ -7,13 +7,14 @@ on:
   pull_request:
     branches: ['main']
 
+permissions:
+  packages: write
+  attestations: write
+  contents: read
+
 jobs:
   docker-build:
     runs-on: ubuntu-latest
-    permissions:
-      packages: write
-      attestations: write
-      contents: read
     strategy:
       matrix:
         image: [app, nginx, postgres, redis]
