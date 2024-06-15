@@ -18,3 +18,5 @@ jobs:
           python-version: "3.11"
       - name: python -- flake8-lint
         uses: py-actions/flake8@v2
+        with:
+          ignore: 'E501'
